@@ -1,0 +1,27 @@
+import java.util.*;
+
+class HotelReservation {
+    static HashMap<String, Boolean> rooms = new HashMap<>();
+    static HashMap<String, String> bookings = new HashMap<>();
+    static { rooms.put("Deluxe", true); rooms.put("Suite", true); rooms.put("Standard", true); }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Available Rooms: " + rooms);
+        System.out.println("Enter room type to book (Deluxe/Suite/Standard):");
+        String roomType = sc.nextLine();
+        
+        if (rooms.containsKey(roomType) && rooms.get(roomType)) {
+            System.out.println("Enter your name:");
+            String name = sc.nextLine();
+            rooms.put(roomType, false);
+            bookings.put(roomType, name);
+            System.out.println("Booking Confirmed! " + name + " booked a " + roomType + " room.");
+        } else {
+            System.out.println("Room not available or invalid type.");
+        }
+
+        System.out.println("Booking Details: " + bookings);
+        sc.close();
+    }
+}
